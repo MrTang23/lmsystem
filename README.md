@@ -2,7 +2,7 @@
 
 ## 基础功能
 利用数字孪生，物联网等技术实现实验室安全管理
-
+  
 ## 项目运行
 ```
 npm install
@@ -33,14 +33,14 @@ git clone https://github.com/MrTang23/lmsystem.git
 
 ## 主要技术栈
 node.js,npm,ECMAScript6,Bable,vue-cli脚手架,vue-router,axios,webpack,vue.js
-
+  
 ## 项目文件结构
 ### 部分重要文件解释
-.git:同步至GitHub相关文件
-package-lock.json/package.json:项目环境依赖锁
-pulic:图片等资源存放
-src:页面等主要文件，views为页面文件，router为路由配置
-
+.git:同步至GitHub相关文  
+package-lock.json/package.json:项目环境依赖锁  
+pulic:图片等资源存放  
+src:页面等主要文件，views为页面文件，router为路由配置  
+其余文件为全局配置或控制台等文件，api为接口整合  
 ```
 lmsystem
 ├─ .browserslistrc

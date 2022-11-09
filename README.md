@@ -28,7 +28,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 项目克隆至本地
 ```
-git clone 
+git clone https://github.com/MrTang23/lmsystem.git
 ```
 
 ## 主要技术栈
@@ -162,6 +162,6 @@ lmsystem
 
 ```
 
-## written by Amos Tang
+## written by 汤宗朔 南京工业大学 计算机科学与技术学院
 ### mr.amos@njtech.edu.cn
-### 此项目禁止开源，已经发现后果自负
+### 此项目禁止开源，一经发现后果自负

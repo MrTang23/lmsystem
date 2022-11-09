@@ -26,6 +26,11 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+## 项目克隆至本地
+```
+git clone 
+```
+
 ## 主要技术栈
 node.js,npm,ECMAScript6,Bable,vue-cli脚手架,vue-router,axios,webpack,vue.js
 

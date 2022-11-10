@@ -154,6 +154,9 @@ export default {
             },
             chemicalData: [], //借用药品接口接收数据，待处理
             borrowChemical: [], //处理后的药品借用列表
+            rowId:{
+                id:""
+            }
         };
     },
     //创建页面时初始化数据
@@ -184,8 +187,16 @@ export default {
             this.chemicalData = data.records;
             this.total = data.total;
             console.log(this.chemicalData[0])
-            for( let item in this.chemicalData[0]){
+            for( let item in this.chemicalData){
                 console.log(item)
+            }
+        },
+        async chemicalApprove(index, row){
+            let url="chemical/borrow/verify/"+row.id
+            let code=await this.$get(url)
+            if(code){
+                alert("成功借出，请前往去药品")
+                this.getChemicalData()
             }
         },
         changeRawData() {

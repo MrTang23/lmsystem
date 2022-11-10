@@ -7,7 +7,7 @@ module.exports = {
     //开发服务器相关配置
     devServer: {
         contentBase: path.join(__dirname, 'public'),//配置静态资源目录
-        port: 8085,
+        port: 8080,
 
     },
     //配置webpack相关

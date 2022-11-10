@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <!--背景画布，参考https://www.17sucai.com/pins/34850.html-->
-        <canvas id="particle-canvas" width="1245" height="902"></canvas>
+        <canvas id="particle-canvas" width="" height="1000"></canvas>
         <div class="content">
             <div class="login">
                 <div class="title">南京工业大学</div>

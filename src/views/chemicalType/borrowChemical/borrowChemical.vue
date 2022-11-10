@@ -182,28 +182,28 @@ export default {
             for (var item in this.form.type) {
                 switch (this.form.type[item]) {
                     case "易燃类":
-                        this.reactionTypeArr.push(8);
-                        break;
-                    case "易爆类":
                         this.reactionTypeArr.push(1);
                         break;
-                    case "生成气体有毒类":
+                    case "易爆类":
                         this.reactionTypeArr.push(2);
                         break;
-                    case "自燃类":
+                    case "生成气体有毒类":
                         this.reactionTypeArr.push(3);
                         break;
-                    case "硝化类":
+                    case "自燃类":
                         this.reactionTypeArr.push(4);
                         break;
-                    case "卤化类":
+                    case "硝化类":
                         this.reactionTypeArr.push(5);
                         break;
-                    case "磺化类":
+                    case "卤化类":
                         this.reactionTypeArr.push(6);
                         break;
-                    case "加氢":
+                    case "磺化类":
                         this.reactionTypeArr.push(7);
+                        break;
+                    case "加氢类":
+                        this.reactionTypeArr.push(8);
                         break;
                 }
             }
@@ -218,7 +218,7 @@ export default {
             this.submitBorrowForm.reactionType =
                 this.submitBorrowForm.reactionType.sort(); //排序
             let lastNumber = this.submitBorrowForm.reactionType.slice(-1); //获取最后一个值
-            if (lastNumber == 8) {
+            if (lastNumber == 9) {
                 //删除函数默认删除0，补一个8，如果最后一位是8则在数组第一位补一个0同时删除8
                 this.submitBorrowForm.reactionType.pop();
                 this.submitBorrowForm.reactionType.unshift(0);
@@ -227,16 +227,57 @@ export default {
                 //如果选择普通反应，则特殊反应选项禁用（true），同时清空特殊反应数组
                 this.submitBorrowForm.reactionType.length = 0;
                 this.submitBorrowForm.borrowType = 0;
+                this.submitBorrowForm.reactionType.unshift(0);
             } else {
                 this.submitBorrowForm.borrowType = 1;
+                alert(
+                    "您所申请的实验类型属于危险\n该药品申请需要两人同时申请,请联系另一小组成员进行申请."
+                );
+                //this.dangerChemical();
             }
-            console.log(this.submitBorrowForm)
-            let {code,msg}=await this.$post("/chemical/borrow/create",this.submitBorrowForm);
-            if(code){
-                
+            console.log(this.submitBorrowForm);
+            let { code, msg } = await this.$post(
+                "/chemical/borrow/create",
+                this.submitBorrowForm
+            );
+            if (code) {
+                this.openBorrowSuccess();
+            } else {
+                this.openBorrowFailed();
             }
         },
-
+        openBorrowSuccess() {
+            this.$notify({
+                title: "成功",
+                message: "您已提交借出申请",
+                type: "success",
+            });
+        },
+        openBorrowFailed() {
+            this.$notify.error({
+                title: "错误",
+                message: "借出失败",
+            });
+        },
+        dangerChemical() {
+            this.$confirm("您说申请的药品属于危化品，需要另一小组成员同时申请", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning",
+            })
+                .then(() => {
+                    this.$message({
+                        type: "success",
+                        message: "请另一成员同时申请",
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        type: "info",
+                        message: "已取消借用",
+                    });
+                });
+        },
         async getAllChemical() {
             let { data } = await this.$get("/chemical/list", this.pages);
             this.options = data.records;
